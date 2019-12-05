@@ -1,4 +1,4 @@
-package br.com.brasilprev.clientCrud;
+package br.com.brasilprev.clientcrud;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
