@@ -1,2 +1,2 @@
 release: ./mvnw liquibase:update
-web: java -jar target/java-getting-started-1.0.jar
+web: java -jar target/clientCrud-0.0.1-SNAPSHOT.jar
