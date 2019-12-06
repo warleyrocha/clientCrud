@@ -17,13 +17,12 @@ import java.util.Collection;
 @Entity
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
-@Table(name = "clientes",schema = "public")
+@Table(name = "clientes")
 public class Cliente implements UserDetails {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "\"idCliente\"")
-
     private Long idCliente;
 
     @Size(max = 255, message = "Tamanho do nome inválido")

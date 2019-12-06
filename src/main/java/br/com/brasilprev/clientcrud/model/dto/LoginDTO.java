@@ -1,6 +1,5 @@
 package br.com.brasilprev.clientcrud.model.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
