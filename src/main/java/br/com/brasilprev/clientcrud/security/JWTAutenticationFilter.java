@@ -1,8 +1,8 @@
 package br.com.brasilprev.clientcrud.security;
 
-import br.com.brasilprev.clientcrud.model.Usuario;
+import br.com.brasilprev.clientcrud.model.Cliente;
 import br.com.brasilprev.clientcrud.service.JWTTokenService;
-import br.com.brasilprev.clientcrud.service.UsuarioService;
+import br.com.brasilprev.clientcrud.service.ClienteService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,11 +20,11 @@ class JWTAutenticationFilter extends OncePerRequestFilter {
 
     private JWTTokenService tokenService;
 
-    private UsuarioService usuarioService;
+    private ClienteService clienteService;
 
-    public JWTAutenticationFilter(JWTTokenService tokenService, UsuarioService usuarioService) {
+    public JWTAutenticationFilter(JWTTokenService tokenService, ClienteService clienteService) {
         this.tokenService = tokenService;
-        this.usuarioService = usuarioService;
+        this.clienteService = clienteService;
     }
 
     @Override
@@ -37,7 +37,7 @@ class JWTAutenticationFilter extends OncePerRequestFilter {
     }
 
     private void doAutentication(String token) {
-        Usuario user = usuarioService.findById(tokenService.getIdByToken(token));
+        Cliente user = clienteService.findById(tokenService.getIdByToken(token));
         SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities()));
     }
 

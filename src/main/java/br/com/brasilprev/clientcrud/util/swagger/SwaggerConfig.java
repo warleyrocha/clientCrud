@@ -1,6 +1,6 @@
 package br.com.brasilprev.clientcrud.util.swagger;
 
-import br.com.brasilprev.clientcrud.model.Usuario;
+import br.com.brasilprev.clientcrud.model.Cliente;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -25,7 +25,7 @@ public class SwaggerConfig {
                 .apis(RequestHandlerSelectors.basePackage("br.com.brasilprev.clientcrud.controller"))
                 .build()
                 .apiInfo(apiInfo())
-                .ignoredParameterTypes(Usuario.class)
+                .ignoredParameterTypes(Cliente.class)
                 .globalOperationParameters(
                         Arrays.asList(new ParameterBuilder()
                                 .name("Authorization")

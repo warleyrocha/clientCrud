@@ -2,7 +2,7 @@ package br.com.brasilprev.clientcrud.security;
 
 import br.com.brasilprev.clientcrud.service.AutenticationService;
 import br.com.brasilprev.clientcrud.service.JWTTokenService;
-import br.com.brasilprev.clientcrud.service.UsuarioService;
+import br.com.brasilprev.clientcrud.service.ClienteService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -24,12 +24,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private JWTTokenService tokenService;
 
-    private UsuarioService usuarioService;
+    private ClienteService clienteService;
 
-    public WebSecurityConfig(AutenticationService authenticationService, JWTTokenService tokenService, UsuarioService usuarioService) {
+    public WebSecurityConfig(AutenticationService authenticationService, JWTTokenService tokenService, ClienteService clienteService) {
         this.authenticationService = authenticationService;
         this.tokenService = tokenService;
-        this.usuarioService = usuarioService;
+        this.clienteService = clienteService;
     }
 
     @Override
@@ -50,7 +50,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and().csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and().addFilterBefore(new JWTAutenticationFilter(tokenService, usuarioService), UsernamePasswordAuthenticationFilter.class);
+                .and().addFilterBefore(new JWTAutenticationFilter(tokenService, clienteService), UsernamePasswordAuthenticationFilter.class);
     }
 
     @Override

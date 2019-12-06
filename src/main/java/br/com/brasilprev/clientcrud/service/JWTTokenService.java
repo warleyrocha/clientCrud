@@ -1,6 +1,6 @@
 package br.com.brasilprev.clientcrud.service;
 
-import br.com.brasilprev.clientcrud.model.Usuario;
+import br.com.brasilprev.clientcrud.model.Cliente;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
@@ -24,7 +24,7 @@ public class JWTTokenService {
     public String generateToken(Authentication authentication) {
         return Jwts.builder()
                 .setIssuer("API BrasilPrev")
-                .setSubject(((Usuario) authentication.getPrincipal()).getId().toString())
+                .setSubject(((Cliente) authentication.getPrincipal()).getIdCliente().toString())
                 .setIssuedAt(new Date())
                 .setExpiration(DateUtils.addMilliseconds(new Date(), Integer.valueOf(expiration)))
                 .signWith(SignatureAlgorithm.HS256, secret)

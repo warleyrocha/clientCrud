@@ -1,15 +1,15 @@
 package br.com.brasilprev.clientcrud.model;
 
+import br.com.brasilprev.clientcrud.model.enumeration.Estado;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -17,14 +17,37 @@ import java.util.Collection;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Usuario implements UserDetails {
+@Table(name = "clientes",schema = "public")
+public class Cliente implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "\"idCliente\"")
+
+    private Long idCliente;
+
+    @Size(max = 255, message = "Tamanho do nome inválido")
     private String nome;
-    private String login;
+
+    @Email(message = "Email inválido")
+    private String email;
+
     private String senha;
+
+    //Endereço
+    @Size(max = 100, message = "Tamanho do nome inválido")
+    private String rua;
+
+    @Size(max = 255, message = "Tamanho da cidade inválido")
+    private String cidade;
+
+    @Size(max = 255, message = "Tamanho do bairro inválido")
+    private String bairro;
+
+    @Size(min = 8, max = 8, message = "Tamanho do Cep inválido")
+    private String cep;
+
+    @Enumerated(EnumType.STRING)
+    private Estado estado;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -43,7 +66,7 @@ public class Usuario implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.login;
+        return this.email;
     }
 
     @Override
